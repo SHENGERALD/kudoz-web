@@ -328,36 +328,20 @@
     .ask-milestone-period { font-size: .72rem; font-weight: 700; color: var(--gold); text-transform: uppercase; letter-spacing: .06em; margin-bottom: 8px; }
     .ask-milestone-item { font-size: .82rem; color: rgba(255,255,255,.7); display: flex; gap: 6px; margin-bottom: 4px; }
     .ask-milestone-item::before { content: '✓'; color: var(--gold); flex-shrink: 0; }
-    /* Donut Chart */
-    .donut-wrap { position: relative; width: 240px; height: 240px; }
-    .donut-chart {
-      width: 240px; height: 240px; border-radius: 50%;
-      background: conic-gradient(
-        #eca406 0deg 180deg,
-        #f5c842 180deg 252deg,
-        #d4880a 252deg 309.6deg,
-        #f0b429 309.6deg 345.6deg,
-        #e8d090 345.6deg 360deg
-      );
-      box-shadow: 0 8px 32px rgba(236,164,6,.3);
-    }
-    .donut-chart::after {
-      content: ''; position: absolute; top: 50%; left: 50%;
-      transform: translate(-50%,-50%);
-      width: 130px; height: 130px; border-radius: 50%;
-      background: var(--brown);
-    }
-    .donut-center {
-      position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
-      text-align: center; z-index: 2;
-    }
-    .donut-amount { font-size: 1.6rem; font-weight: 900; color: #fff; line-height: 1; }
-    .donut-label { font-size: .65rem; color: rgba(255,255,255,.55); text-transform: uppercase; letter-spacing: .06em; margin-top: 4px; }
-    .donut-legend { display: flex; flex-direction: column; gap: 14px; }
-    .donut-legend-item { display: flex; align-items: center; gap: 12px; }
-    .donut-dot { width: 14px; height: 14px; border-radius: 50%; flex-shrink: 0; }
-    .donut-legend-pct { font-size: 1.1rem; font-weight: 800; color: var(--gold); min-width: 44px; }
-    .donut-legend-name { font-size: .9rem; color: rgba(255,255,255,.75); }
+    /* Chart.js Donut */
+    .chartjs-wrap { position: relative; width: 280px; height: 280px; }
+    .chartjs-center { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); text-align: center; pointer-events: none; }
+    .chartjs-amount { font-size: 1.8rem; font-weight: 900; color: #fff; line-height: 1; }
+    .chartjs-sub { font-size: .65rem; color: rgba(255,255,255,.5); text-transform: uppercase; letter-spacing: .07em; margin-top: 4px; }
+    /* Allocation Cards */
+    .alloc-cards { display: flex; flex-direction: column; gap: 12px; }
+    .alloc-card { background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.08); border-radius: 12px; padding: 12px 16px; overflow: hidden; position: relative; }
+    .alloc-bar { position: absolute; top: 0; left: 0; height: 3px; width: var(--w); background: var(--c); border-radius: 3px 0 0 0; transition: width 1s ease; }
+    .alloc-info { display: flex; justify-content: space-between; align-items: center; margin-top: 6px; }
+    .alloc-name { font-size: .88rem; color: rgba(255,255,255,.8); font-weight: 500; }
+    .alloc-right { display: flex; align-items: center; gap: 12px; }
+    .alloc-pct { font-size: 1rem; font-weight: 800; color: var(--gold); }
+    .alloc-amt { font-size: .8rem; color: rgba(255,255,255,.45); }
     .btn-gold {
       background: var(--gold); color: var(--brown) !important; border: none; border-radius: 28px;
       padding: 14px 34px; font-size: 1rem; font-weight: 800;
@@ -830,21 +814,54 @@
         </div>
       </div>
     </div>
-    <!-- Donut Chart -->
-    <div class="row align-items-center g-5 mb-5">
-      <div class="col-12 col-md-5 d-flex justify-content-center">
-        <div class="donut-wrap">
-          <div class="donut-chart"></div>
-          <div class="donut-center"><div class="donut-amount">$50K</div><div class="donut-label">Seed Round</div></div>
+    <!-- Chart.js Donut + Allocation Cards -->
+    <div class="row align-items-center g-4 mb-5">
+      <div class="col-12 col-lg-5 d-flex justify-content-center">
+        <div class="chartjs-wrap">
+          <canvas id="fundChart" width="280" height="280"></canvas>
+          <div class="chartjs-center">
+            <div class="chartjs-amount">$50K</div>
+            <div class="chartjs-sub">Seed Round</div>
+          </div>
         </div>
       </div>
-      <div class="col-12 col-md-7">
-        <div class="donut-legend">
-          <div class="donut-legend-item"><span class="donut-dot" style="background:#eca406"></span><span class="donut-legend-pct">50%</span><span class="donut-legend-name">App Development</span></div>
-          <div class="donut-legend-item"><span class="donut-dot" style="background:#f5c842"></span><span class="donut-legend-pct">20%</span><span class="donut-legend-name">Partnership</span></div>
-          <div class="donut-legend-item"><span class="donut-dot" style="background:#d4880a"></span><span class="donut-legend-pct">16%</span><span class="donut-legend-name">Employer Acquisition</span></div>
-          <div class="donut-legend-item"><span class="donut-dot" style="background:#f0b429"></span><span class="donut-legend-pct">10%</span><span class="donut-legend-name">Marketing &amp; Growth</span></div>
-          <div class="donut-legend-item"><span class="donut-dot" style="background:#e8d090"></span><span class="donut-legend-pct">4%</span><span class="donut-legend-name">Operations</span></div>
+      <div class="col-12 col-lg-7">
+        <div class="alloc-cards">
+          <div class="alloc-card">
+            <div class="alloc-bar" style="--c:#eca406;--w:50%"></div>
+            <div class="alloc-info">
+              <span class="alloc-name">App Development</span>
+              <span class="alloc-right"><span class="alloc-pct">50%</span><span class="alloc-amt">$25,000</span></span>
+            </div>
+          </div>
+          <div class="alloc-card">
+            <div class="alloc-bar" style="--c:#f5c842;--w:20%"></div>
+            <div class="alloc-info">
+              <span class="alloc-name">Partnership</span>
+              <span class="alloc-right"><span class="alloc-pct">20%</span><span class="alloc-amt">$10,000</span></span>
+            </div>
+          </div>
+          <div class="alloc-card">
+            <div class="alloc-bar" style="--c:#d4880a;--w:16%"></div>
+            <div class="alloc-info">
+              <span class="alloc-name">Employer Acquisition</span>
+              <span class="alloc-right"><span class="alloc-pct">16%</span><span class="alloc-amt">$8,000</span></span>
+            </div>
+          </div>
+          <div class="alloc-card">
+            <div class="alloc-bar" style="--c:#f0b429;--w:10%"></div>
+            <div class="alloc-info">
+              <span class="alloc-name">Marketing &amp; Growth</span>
+              <span class="alloc-right"><span class="alloc-pct">10%</span><span class="alloc-amt">$5,000</span></span>
+            </div>
+          </div>
+          <div class="alloc-card">
+            <div class="alloc-bar" style="--c:#e8d090;--w:4%"></div>
+            <div class="alloc-info">
+              <span class="alloc-name">Operations</span>
+              <span class="alloc-right"><span class="alloc-pct">4%</span><span class="alloc-amt">$2,000</span></span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -897,6 +914,45 @@
 
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
+<script>
+  const fundCtx = document.getElementById('fundChart');
+  if (fundCtx) {
+    new Chart(fundCtx, {
+      type: 'doughnut',
+      data: {
+        labels: ['App Development','Partnership','Employer Acquisition','Marketing & Growth','Operations'],
+        datasets: [{
+          data: [50, 20, 16, 10, 4],
+          backgroundColor: ['#eca406','#f5c842','#d4880a','#f0b429','#e8d090'],
+          borderWidth: 3,
+          borderColor: '#111111',
+          hoverOffset: 10
+        }]
+      },
+      options: {
+        cutout: '65%',
+        animation: { animateRotate: true, duration: 1200 },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => {
+                const amt = [25000,10000,8000,5000,2000][ctx.dataIndex];
+                return ` ${ctx.label}: ${ctx.parsed}%  ($${amt.toLocaleString()})`;
+              }
+            },
+            backgroundColor: 'rgba(17,17,17,.95)',
+            titleColor: '#eca406',
+            bodyColor: '#fff',
+            padding: 12,
+            cornerRadius: 10
+          }
+        }
+      }
+    });
+  }
+</script>
 <script>
 
   // ── Scroll Progress Bar + Back to Top ──
