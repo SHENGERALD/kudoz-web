@@ -342,6 +342,14 @@
     .alloc-right { display: flex; align-items: center; gap: 12px; }
     .alloc-pct { font-size: 1rem; font-weight: 800; color: var(--gold); }
     .alloc-amt { font-size: .8rem; color: rgba(255,255,255,.45); }
+    .alloc-card { cursor: pointer; transition: transform .2s ease, background .2s ease, border-color .2s ease; }
+    .alloc-card.alloc-active {
+      background: rgba(236,164,6,.18);
+      border-color: rgba(236,164,6,.5);
+      transform: translateX(8px);
+    }
+    .alloc-card.alloc-active .alloc-name { color: #fff; font-weight: 700; }
+    .alloc-card.alloc-active .alloc-amt { color: rgba(255,255,255,.7); }
     .btn-gold {
       background: var(--gold); color: var(--brown) !important; border: none; border-radius: 28px;
       padding: 14px 34px; font-size: 1rem; font-weight: 800;
@@ -826,36 +834,36 @@
         </div>
       </div>
       <div class="col-12 col-lg-7">
-        <div class="alloc-cards">
-          <div class="alloc-card">
+        <div class="alloc-cards" id="allocCards">
+          <div class="alloc-card" data-idx="0">
             <div class="alloc-bar" style="--c:#eca406;--w:50%"></div>
             <div class="alloc-info">
               <span class="alloc-name">App Development</span>
               <span class="alloc-right"><span class="alloc-pct">50%</span><span class="alloc-amt">$25,000</span></span>
             </div>
           </div>
-          <div class="alloc-card">
+          <div class="alloc-card" data-idx="1">
             <div class="alloc-bar" style="--c:#f5c842;--w:20%"></div>
             <div class="alloc-info">
               <span class="alloc-name">Partnership</span>
               <span class="alloc-right"><span class="alloc-pct">20%</span><span class="alloc-amt">$10,000</span></span>
             </div>
           </div>
-          <div class="alloc-card">
+          <div class="alloc-card" data-idx="2">
             <div class="alloc-bar" style="--c:#d4880a;--w:16%"></div>
             <div class="alloc-info">
               <span class="alloc-name">Employer Acquisition</span>
               <span class="alloc-right"><span class="alloc-pct">16%</span><span class="alloc-amt">$8,000</span></span>
             </div>
           </div>
-          <div class="alloc-card">
+          <div class="alloc-card" data-idx="3">
             <div class="alloc-bar" style="--c:#f0b429;--w:10%"></div>
             <div class="alloc-info">
               <span class="alloc-name">Marketing &amp; Growth</span>
               <span class="alloc-right"><span class="alloc-pct">10%</span><span class="alloc-amt">$5,000</span></span>
             </div>
           </div>
-          <div class="alloc-card">
+          <div class="alloc-card" data-idx="4">
             <div class="alloc-bar" style="--c:#e8d090;--w:4%"></div>
             <div class="alloc-info">
               <span class="alloc-name">Operations</span>
@@ -917,8 +925,30 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
 <script>
   const fundCtx = document.getElementById('fundChart');
+  const allocCards = document.querySelectorAll('#allocCards .alloc-card');
+  let fundChart = null;
+
+  function highlightCard(idx) {
+    allocCards.forEach((c, i) => c.classList.toggle('alloc-active', i === idx));
+  }
+  function clearCard() {
+    allocCards.forEach(c => c.classList.remove('alloc-active'));
+  }
+  function highlightSegment(idx) {
+    if (!fundChart) return;
+    fundChart.setActiveElements([{ datasetIndex: 0, index: idx }]);
+    fundChart.tooltip.setActiveElements([{ datasetIndex: 0, index: idx }], { x: 0, y: 0 });
+    fundChart.update();
+  }
+  function clearSegment() {
+    if (!fundChart) return;
+    fundChart.setActiveElements([]);
+    fundChart.tooltip.setActiveElements([], { x: 0, y: 0 });
+    fundChart.update();
+  }
+
   if (fundCtx) {
-    new Chart(fundCtx, {
+    fundChart = new Chart(fundCtx, {
       type: 'doughnut',
       data: {
         labels: ['App Development','Partnership','Employer Acquisition','Marketing & Growth','Operations'],
@@ -927,18 +957,21 @@
           backgroundColor: ['#eca406','#f5c842','#d4880a','#f0b429','#e8d090'],
           borderWidth: 3,
           borderColor: '#111111',
-          hoverOffset: 10
+          hoverOffset: 18
         }]
       },
       options: {
         cutout: '65%',
         animation: { animateRotate: true, duration: 1200 },
+        onClick: (e) => {
+          const pts = fundChart.getElementsAtEventForMode(e, 'nearest', { intersect: true }, false);
+          if (pts.length) highlightCard(pts[0].index);
+          else clearCard();
+        },
         plugins: {
           legend: { display: false },
           tooltip: {
             position: 'nearest',
-            xAlign: 'center',
-            yAlign: 'bottom',
             callbacks: {
               title: () => '',
               label: ctx => {
@@ -947,7 +980,6 @@
               }
             },
             backgroundColor: 'rgba(17,17,17,.95)',
-            titleColor: '#eca406',
             bodyColor: '#fff',
             padding: 12,
             cornerRadius: 10,
@@ -955,6 +987,15 @@
           }
         }
       }
+    });
+
+    // Card → donut 雙向
+    allocCards.forEach((card, i) => {
+      card.addEventListener('click', () => {
+        const isActive = card.classList.contains('alloc-active');
+        if (isActive) { clearCard(); clearSegment(); }
+        else { highlightCard(i); highlightSegment(i); }
+      });
     });
   }
 </script>
