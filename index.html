@@ -937,13 +937,13 @@
   function highlightSegment(idx) {
     if (!fundChart) return;
     fundChart.setActiveElements([{ datasetIndex: 0, index: idx }]);
-    fundChart.tooltip.setActiveElements([{ datasetIndex: 0, index: idx }], { x: 0, y: 0 });
+    fundChart.tooltip.setActiveElements([], {});
     fundChart.update();
   }
   function clearSegment() {
     if (!fundChart) return;
     fundChart.setActiveElements([]);
-    fundChart.tooltip.setActiveElements([], { x: 0, y: 0 });
+    fundChart.tooltip.setActiveElements([], {});
     fundChart.update();
   }
 
