@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://shengerald.github.io/kudoz-web/sitemap.xml
