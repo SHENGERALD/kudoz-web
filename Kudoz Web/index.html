@@ -394,11 +394,13 @@
     }
     .team-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(45,26,10,.1); }
     .team-avatar {
-      width: 72px; height: 72px; border-radius: 50%; margin: 0 auto 16px;
-      background: linear-gradient(135deg, var(--gold), var(--orange));
+      width: 120px; height: 120px; border-radius: 50%; margin: 0 auto 16px;
+      background: #e0e0e0;
       display: flex; align-items: center; justify-content: center;
       font-size: 1.4rem; font-weight: 800; color: #fff;
+      overflow: hidden; border: 4px solid var(--gold);
     }
+    .team-avatar img { width: 100%; height: 100%; object-fit: cover; object-position: center 15%; display: block; }
     .team-name { font-size: 1rem; font-weight: 700; color: var(--brown); margin-bottom: 4px; }
     .team-role { font-size: .75rem; font-weight: 700; color: var(--orange); text-transform: uppercase; letter-spacing: .05em; margin-bottom: 8px; }
     .team-school { font-size: .78rem; color: var(--gray); margin-bottom: 10px; }
@@ -523,6 +525,7 @@
     <a href="#problem">Problem</a>
     <a href="#solution">Solution</a>
     <a href="#how">How it works</a>
+    <a href="#biz">Buinsess Model</a>
     <a href="#invest">Financials</a>
     <a href="#team">Team</a>
     <a href="#ask">Invest</a>
@@ -969,7 +972,7 @@
     <div class="row g-4">
       <div class="col-6 col-lg-3">
         <div class="team-card">
-          <div class="team-avatar">SY</div>
+          <div class="team-avatar"><img src="assets/images/team-sandy.png" alt="Sandy Yen" style="transform:scale(1.5) translateY(-5%);" /></div>
           <div class="team-name">Sandy Yen</div>
           <div class="team-role">CEO &amp; Co-Founder</div>
           <div class="team-school">ASU M.S. Industrial Engineering</div>
@@ -978,7 +981,7 @@
       </div>
       <div class="col-6 col-lg-3">
         <div class="team-card">
-          <div class="team-avatar">SC</div>
+          <div class="team-avatar"><img src="assets/images/team-sherry.png" alt="Sherry Chu" style="transform:scale(1.4);transform-origin:35% 20%;" /></div>
           <div class="team-name">Sherry Chu</div>
           <div class="team-role">COO &amp; Co-Founder</div>
           <div class="team-school">ASU M.S. Industrial Engineering</div>
@@ -987,7 +990,7 @@
       </div>
       <div class="col-6 col-lg-3">
         <div class="team-card">
-          <div class="team-avatar">GS</div>
+          <div class="team-avatar"><img src="assets/images/team-gerald.png" alt="Gerald Shen" /></div>
           <div class="team-name">Gerald Shen</div>
           <div class="team-role">CTO &amp; Co-Founder</div>
           <div class="team-school">ASU M.S. Industrial Engineering</div>
@@ -996,7 +999,7 @@
       </div>
       <div class="col-6 col-lg-3">
         <div class="team-card">
-          <div class="team-avatar">FY</div>
+          <div class="team-avatar"><img src="assets/images/team-frederic.png" alt="Frederic Yang" style="transform:scale(1.5) translateY(-2%);" /></div>
           <div class="team-name">Frederic Yang</div>
           <div class="team-role">CFO &amp; Co-Founder</div>
           <div class="team-school">ASU M.S. Industrial Engineering</div>
