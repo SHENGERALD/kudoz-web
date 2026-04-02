@@ -1,0 +1,8 @@
+kudoz-swipe-dream-main/
+kudoz-swipe-dream-main new/
+.DS_Store
+**/.DS_Store
+.claude/
+**/.claude/
+*.env
+node_modules/
