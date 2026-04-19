@@ -364,26 +364,74 @@
     .market-ring.som .market-ring-label { color: rgba(255,255,255,.5); }
     .market-ring-desc { font-size: .82rem; color: rgba(255,255,255,.5); margin-top: 2px; }
 
-    /* ── BUSINESS MODEL ── */
-    .biz-phase {
-      background: #fff; border-radius: 20px; padding: 28px 24px;
-      border: 1px solid rgba(45,26,10,.06); position: relative; overflow: hidden; height: 100%;
+    /* ── B2B2C LAYER DESIGN ── */
+    .rev-stack { display: flex; flex-direction: column; gap: 0; }
+    .rev-row {
+      border-radius: 20px; overflow: hidden; display: flex; align-items: stretch;
+      box-shadow: 0 4px 20px rgba(0,0,0,.07);
+      transition: transform .22s, box-shadow .22s;
     }
-    .biz-phase::before {
-      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
-      background: linear-gradient(90deg, var(--gold), var(--orange));
+    .rev-row:hover { transform: translateY(-4px); box-shadow: 0 14px 40px rgba(0,0,0,.13); z-index: 1; }
+    .rev-row-1 { background: #fff; border: 1.5px solid rgba(236,164,6,.2); }
+    .rev-row-2 { background: linear-gradient(to right, #fffbf0, #fffef8); border: 1.5px solid rgba(236,164,6,.42); }
+    .rev-row-3 { background: linear-gradient(135deg, var(--brown) 0%, #3a2010 100%); border: 1.5px solid var(--brown); }
+    .rev-row-accent { width: 7px; flex-shrink: 0; }
+    .rev-row-1 .rev-row-accent { background: linear-gradient(to bottom, rgba(236,164,6,.35), var(--gold)); }
+    .rev-row-2 .rev-row-accent { background: var(--gold); }
+    .rev-row-3 .rev-row-accent { background: var(--gold); }
+    .rev-row-body {
+      flex: 1; padding: 26px 28px;
+      display: flex; align-items: center; gap: 28px; flex-wrap: wrap;
     }
-    .biz-phase-num { font-size: .75rem; font-weight: 800; color: var(--gray); text-transform: uppercase; letter-spacing: .07em; margin-bottom: 8px; }
-    .biz-phase-title { font-size: 1.05rem; font-weight: 800; color: var(--brown); margin-bottom: 16px; }
-    .biz-split { display: flex; gap: 12px; margin-bottom: 16px; }
-    .biz-split-item { flex: 1; text-align: center; background: var(--cream2); border-radius: 10px; padding: 10px; }
-    .biz-split-pct { font-size: 1.3rem; font-weight: 900; }
-    .biz-split-item.employer .biz-split-pct { color: var(--orange); }
-    .biz-split-item.user .biz-split-pct { color: var(--gold); }
-    .biz-split-lbl { font-size: .65rem; color: var(--gray); font-weight: 600; margin-top: 2px; }
-    .biz-features { display: flex; flex-direction: column; gap: 6px; }
-    .biz-feature { font-size: .82rem; color: var(--gray); display: flex; align-items: flex-start; gap: 6px; }
-    .biz-feature::before { content: '→'; color: var(--orange); flex-shrink: 0; font-weight: 700; }
+    .rev-row-phase { min-width: 148px; flex-shrink: 0; }
+    .rev-badge {
+      display: inline-block; font-size: .68rem; font-weight: 800;
+      text-transform: uppercase; letter-spacing: .08em;
+      padding: 3px 10px; border-radius: 20px; margin-bottom: 6px;
+    }
+    .rev-badge-1 { background: rgba(236,164,6,.13); color: var(--orange); }
+    .rev-badge-2 { background: rgba(236,164,6,.22); color: var(--orange); }
+    .rev-badge-3 { background: rgba(236,164,6,.28); color: var(--gold); }
+    .rev-title { font-size: 1.1rem; font-weight: 800; color: var(--brown); }
+    .rev-row-3 .rev-title { color: #fff; }
+    .rev-streams { flex: 1; display: flex; flex-wrap: wrap; gap: 8px; }
+    .rev-tag {
+      font-size: .78rem; font-weight: 600; padding: 6px 14px; border-radius: 20px;
+    }
+    .rev-row-1 .rev-tag { background: var(--cream2); color: var(--gray); }
+    .rev-row-2 .rev-tag { background: rgba(236,164,6,.1); color: var(--brown); }
+    .rev-row-3 .rev-tag { background: rgba(255,255,255,.1); color: rgba(255,255,255,.85); border: 1px solid rgba(255,255,255,.15); }
+    .rev-tag-new::before { content: '+ '; font-weight: 900; }
+    .rev-split { min-width: 155px; flex-shrink: 0; }
+    .rev-split-lbl {
+      font-size: .64rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: .06em; color: var(--gray); margin-bottom: 8px;
+    }
+    .rev-row-3 .rev-split-lbl { color: rgba(255,255,255,.45); }
+    .rev-bar-track {
+      height: 9px; border-radius: 9px; overflow: hidden;
+      display: flex; width: 155px; margin-bottom: 7px;
+    }
+    .rev-bar-u { background: rgba(107,101,96,.2); }
+    .rev-bar-e { background: var(--gold); }
+    .rev-row-3 .rev-bar-u { background: rgba(255,255,255,.12); }
+    .rev-bar-labs { display: flex; justify-content: space-between; width: 155px; }
+    .rev-lbl-u { font-size: .7rem; font-weight: 700; color: var(--gray); }
+    .rev-lbl-e { font-size: .7rem; font-weight: 700; color: var(--orange); }
+    .rev-row-3 .rev-lbl-u { color: rgba(255,255,255,.5); }
+    .rev-row-3 .rev-lbl-e { color: var(--gold); }
+    /* Connector between phases */
+    .rev-connector {
+      display: flex; flex-direction: column; align-items: center; height: 46px;
+    }
+    .rev-connector-line { width: 2px; flex: 1; background: linear-gradient(to bottom, var(--gold), rgba(236,164,6,.4)); }
+    .rev-connector-dot {
+      width: 30px; height: 30px; border-radius: 50%;
+      background: var(--gold); color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-size: .75rem; font-weight: 900;
+      box-shadow: 0 4px 12px rgba(236,164,6,.38); flex-shrink: 0;
+    }
 
     /* ── TEAM ── */
     .team { background: var(--cream2); }
@@ -815,53 +863,105 @@
     <div class="text-center mb-5">
       <div class="section-tag">Business Model</div>
       <h2 class="section-title">B2B2C Revenue Evolution</h2>
-      <p class="section-sub mx-auto" style="max-width:500px">Users drive platform growth while employers and recruiters generate sustainable revenue.</p>
+      <p class="section-sub mx-auto" style="max-width:500px">Users drive platform growth while employers and recruiters generate sustainable revenue — evolving across 3 phases.</p>
     </div>
-    <div class="row g-4">
-      <div class="col-12 col-md-4">
-        <div class="biz-phase">
-          <div class="biz-phase-num">Phase 1</div>
-          <div class="biz-phase-title">User Growth</div>
-          <div class="biz-split">
-            <div class="biz-split-item user"><div class="biz-split-pct">40%</div><div class="biz-split-lbl">User</div></div>
-            <div class="biz-split-item employer"><div class="biz-split-pct">60%</div><div class="biz-split-lbl">Employer</div></div>
+
+    <div class="rev-stack">
+
+      <!-- ── Phase 1 ── -->
+      <div class="rev-row rev-row-1">
+        <div class="rev-row-accent"></div>
+        <div class="rev-row-body">
+          <div class="rev-row-phase">
+            <div class="rev-badge rev-badge-1">Phase 1</div>
+            <div class="rev-title">User Growth</div>
           </div>
-          <div class="biz-features">
-            <div class="biz-feature">User Premium Plan</div>
-            <div class="biz-feature">Employer Subscription Plan</div>
-            <div class="biz-feature">Sponsored Job Listings</div>
+          <div class="rev-streams">
+            <span class="rev-tag">User Premium Plan</span>
+            <span class="rev-tag">Employer Subscription Plan</span>
+            <span class="rev-tag">Sponsored Job Listings</span>
           </div>
-        </div>
-      </div>
-      <div class="col-12 col-md-4">
-        <div class="biz-phase">
-          <div class="biz-phase-num">Phase 2</div>
-          <div class="biz-phase-title">Employer Marketplace</div>
-          <div class="biz-split">
-            <div class="biz-split-item user"><div class="biz-split-pct">20%</div><div class="biz-split-lbl">User</div></div>
-            <div class="biz-split-item employer"><div class="biz-split-pct">80%</div><div class="biz-split-lbl">Employer</div></div>
-          </div>
-          <div class="biz-features">
-            <div class="biz-feature">Employer Subscription Plan</div>
-            <div class="biz-feature">Pay-Per-Hire Model</div>
-          </div>
-        </div>
-      </div>
-      <div class="col-12 col-md-4">
-        <div class="biz-phase">
-          <div class="biz-phase-num">Phase 3</div>
-          <div class="biz-phase-title">Talent Network</div>
-          <div class="biz-split">
-            <div class="biz-split-item user"><div class="biz-split-pct">5%</div><div class="biz-split-lbl">User</div></div>
-            <div class="biz-split-item employer"><div class="biz-split-pct">95%</div><div class="biz-split-lbl">Employer</div></div>
-          </div>
-          <div class="biz-features">
-            <div class="biz-feature">Recruiter Access / Talent Search</div>
-            <div class="biz-feature">Hiring Analytics &amp; Insights</div>
+          <div class="rev-split">
+            <div class="rev-split-lbl">Revenue Split</div>
+            <div class="rev-bar-track">
+              <div class="rev-bar-u" style="width:40%"></div>
+              <div class="rev-bar-e" style="width:60%"></div>
+            </div>
+            <div class="rev-bar-labs">
+              <span class="rev-lbl-u">40% User</span>
+              <span class="rev-lbl-e">60% Employer</span>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+
+      <!-- connector -->
+      <div class="rev-connector">
+        <div class="rev-connector-line"></div>
+        <div class="rev-connector-dot">↓</div>
+        <div class="rev-connector-line"></div>
+      </div>
+
+      <!-- ── Phase 2 ── -->
+      <div class="rev-row rev-row-2">
+        <div class="rev-row-accent"></div>
+        <div class="rev-row-body">
+          <div class="rev-row-phase">
+            <div class="rev-badge rev-badge-2">Phase 2</div>
+            <div class="rev-title">Employer Marketplace</div>
+          </div>
+          <div class="rev-streams">
+            <span class="rev-tag">Employer Subscription Plan</span>
+            <span class="rev-tag rev-tag-new">Pay-Per-Hire Model</span>
+          </div>
+          <div class="rev-split">
+            <div class="rev-split-lbl">Revenue Split</div>
+            <div class="rev-bar-track">
+              <div class="rev-bar-u" style="width:20%"></div>
+              <div class="rev-bar-e" style="width:80%"></div>
+            </div>
+            <div class="rev-bar-labs">
+              <span class="rev-lbl-u">20% User</span>
+              <span class="rev-lbl-e">80% Employer</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- connector -->
+      <div class="rev-connector">
+        <div class="rev-connector-line"></div>
+        <div class="rev-connector-dot">↓</div>
+        <div class="rev-connector-line"></div>
+      </div>
+
+      <!-- ── Phase 3 ── -->
+      <div class="rev-row rev-row-3">
+        <div class="rev-row-accent"></div>
+        <div class="rev-row-body">
+          <div class="rev-row-phase">
+            <div class="rev-badge rev-badge-3">Phase 3</div>
+            <div class="rev-title">Talent Network</div>
+          </div>
+          <div class="rev-streams">
+            <span class="rev-tag">Recruiter Access / Talent Search</span>
+            <span class="rev-tag rev-tag-new">Hiring Analytics &amp; Insights</span>
+          </div>
+          <div class="rev-split">
+            <div class="rev-split-lbl">Revenue Split</div>
+            <div class="rev-bar-track">
+              <div class="rev-bar-u" style="width:5%"></div>
+              <div class="rev-bar-e" style="width:95%"></div>
+            </div>
+            <div class="rev-bar-labs">
+              <span class="rev-lbl-u">5% User</span>
+              <span class="rev-lbl-e">95% Employer</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /rev-stack -->
   </div>
 </section>
 
@@ -972,7 +1072,7 @@
     <div class="row g-4">
       <div class="col-6 col-lg-3">
         <div class="team-card">
-          <div class="team-avatar"><img src="assets/images/team-sandy.png" alt="Sandy Yen" style="transform:scale(1.5) translateY(-5%);" /></div>
+          <div class="team-avatar"><img src="assets/images/team-sandy.png" alt="Sandy Yen" style="transform:scale(1.5) translateY(6%);" /></div>
           <div class="team-name">Sandy Yen</div>
           <div class="team-role">CEO &amp; Co-Founder</div>
           <div class="team-school">ASU M.S. Industrial Engineering</div>
@@ -999,7 +1099,7 @@
       </div>
       <div class="col-6 col-lg-3">
         <div class="team-card">
-          <div class="team-avatar"><img src="assets/images/team-frederic.png" alt="Frederic Yang" style="transform:scale(1.5) translateY(-2%);" /></div>
+          <div class="team-avatar"><img src="assets/images/team-frederic.png" alt="Frederic Yang" style="transform:scale(1.5) translateY(6%);" /></div>
           <div class="team-name">Frederic Yang</div>
           <div class="team-role">CFO &amp; Co-Founder</div>
           <div class="team-school">ASU M.S. Industrial Engineering</div>
