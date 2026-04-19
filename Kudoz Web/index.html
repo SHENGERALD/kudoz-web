@@ -433,6 +433,106 @@
       box-shadow: 0 4px 12px rgba(236,164,6,.38); flex-shrink: 0;
     }
 
+    /* ── PRICING ── */
+    .pricing { background: var(--cream2); }
+    .price-toggle-wrap {
+      display: inline-flex; background: rgba(44,26,10,.07);
+      border-radius: 50px; padding: 5px; gap: 3px; margin: 30px auto 0;
+    }
+    .ptab {
+      border: none; background: transparent; cursor: pointer;
+      padding: 10px 30px; border-radius: 50px;
+      font-size: .9rem; font-weight: 700; color: var(--gray);
+      transition: all .22s; white-space: nowrap;
+    }
+    .ptab.active { background: var(--gold); color: #fff; box-shadow: 0 4px 16px rgba(236,164,6,.38); }
+    .price-card {
+      background: #fff; border-radius: 24px;
+      border: 1.5px solid rgba(44,26,10,.07);
+      padding: 36px 28px; height: 100%; position: relative;
+      display: flex; flex-direction: column;
+      transition: transform .22s, box-shadow .22s;
+    }
+    .price-card:hover { transform: translateY(-5px); box-shadow: 0 20px 50px rgba(0,0,0,.1); }
+    .price-card-dark {
+      background: linear-gradient(145deg, var(--brown) 0%, #3d2010 100%);
+      border-color: transparent; color: #fff;
+    }
+    .price-card-warm {
+      background: linear-gradient(145deg, #fffbec, #fff8d5);
+      border: 2px solid rgba(236,164,6,.4);
+    }
+    .price-popular-badge {
+      position: absolute; top: -1px; right: 24px;
+      background: var(--gold); color: #fff;
+      font-size: .67rem; font-weight: 800; text-transform: uppercase; letter-spacing: .07em;
+      padding: 5px 14px; border-radius: 0 0 14px 14px;
+      box-shadow: 0 4px 14px rgba(236,164,6,.42);
+    }
+    .price-plan-lbl {
+      font-size: .73rem; font-weight: 800; text-transform: uppercase;
+      letter-spacing: .08em; color: var(--orange); margin-bottom: 10px;
+    }
+    .price-card-dark .price-plan-lbl { color: var(--gold); }
+    .price-num-row { display: flex; align-items: baseline; gap: 3px; margin-bottom: 4px; }
+    .price-cur { font-size: 1.4rem; font-weight: 900; color: var(--brown); }
+    .price-big { font-size: 3.2rem; font-weight: 900; color: var(--brown); line-height: 1; }
+    .price-cents { font-size: 1.8rem; font-weight: 900; color: var(--brown); }
+    .price-period { font-size: .8rem; color: var(--gray); margin-bottom: 4px; }
+    .price-card-dark .price-cur, .price-card-dark .price-big, .price-card-dark .price-cents { color: #fff; }
+    .price-card-dark .price-period { color: rgba(255,255,255,.5); }
+    .price-tagline {
+      font-size: .82rem; color: var(--gray); margin-bottom: 22px;
+      padding-bottom: 22px; border-bottom: 1px solid rgba(44,26,10,.07);
+    }
+    .price-card-dark .price-tagline { color: rgba(255,255,255,.52); border-color: rgba(255,255,255,.09); }
+    .price-card-warm .price-tagline { border-color: rgba(236,164,6,.18); }
+    .price-feats { flex: 1; display: flex; flex-direction: column; gap: 11px; margin-bottom: 30px; }
+    .price-feat {
+      display: flex; align-items: flex-start; gap: 10px;
+      font-size: .83rem; color: var(--gray); line-height: 1.45;
+    }
+    .pcheck {
+      width: 20px; height: 20px; border-radius: 50%; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: .65rem; font-weight: 900; margin-top: 1px;
+    }
+    .pcheck-y { background: rgba(236,164,6,.15); color: var(--orange); }
+    .pcheck-n { background: rgba(107,101,96,.1); color: rgba(107,101,96,.35); }
+    .price-card-dark .price-feat { color: rgba(255,255,255,.72); }
+    .price-card-dark .pcheck-y { background: rgba(236,164,6,.25); color: var(--gold); }
+    .price-card-dark .pcheck-n { background: rgba(255,255,255,.08); color: rgba(255,255,255,.25); }
+    .btn-price {
+      display: block; width: 100%; padding: 14px;
+      border-radius: 14px; font-size: .95rem; font-weight: 700;
+      text-align: center; text-decoration: none; border: 2px solid transparent;
+      cursor: pointer; transition: all .22s;
+    }
+    .btn-price-outline {
+      border-color: rgba(44,26,10,.18); color: var(--brown); background: transparent;
+    }
+    .btn-price-outline:hover {
+      border-color: var(--gold); background: rgba(236,164,6,.06); color: var(--brown);
+    }
+    .btn-price-gold {
+      background: var(--gold); color: #fff;
+      box-shadow: 0 6px 22px rgba(236,164,6,.4);
+    }
+    .btn-price-gold:hover {
+      background: #d4940a; color: #fff;
+      transform: translateY(-1px); box-shadow: 0 10px 30px rgba(236,164,6,.5);
+    }
+    .btn-price-white {
+      background: rgba(255,255,255,.12); color: #fff;
+      border-color: rgba(255,255,255,.2);
+    }
+    .btn-price-white:hover {
+      background: rgba(255,255,255,.22); color: #fff;
+    }
+    .price-note {
+      text-align: center; font-size: .78rem; color: var(--gray); margin-top: 24px;
+    }
+
     /* ── TEAM ── */
     .team { background: var(--cream2); }
     .team-card {
@@ -573,7 +673,8 @@
     <a href="#problem">Problem</a>
     <a href="#solution">Solution</a>
     <a href="#how">How it works</a>
-    <a href="#biz">Buinsess Model</a>
+    <a href="#biz">Business Model</a>
+    <a href="#pricing">Pricing</a>
     <a href="#invest">Financials</a>
     <a href="#team">Team</a>
     <a href="#ask">Invest</a>
@@ -873,7 +974,7 @@
         <div class="rev-row-accent"></div>
         <div class="rev-row-body">
           <div class="rev-row-phase">
-            <div class="rev-badge rev-badge-1">Phase 1</div>
+            <div class="rev-badge rev-badge-1">Layer 1</div>
             <div class="rev-title">User Growth</div>
           </div>
           <div class="rev-streams">
@@ -907,7 +1008,7 @@
         <div class="rev-row-accent"></div>
         <div class="rev-row-body">
           <div class="rev-row-phase">
-            <div class="rev-badge rev-badge-2">Phase 2</div>
+            <div class="rev-badge rev-badge-2">Layer 2</div>
             <div class="rev-title">Employer Marketplace</div>
           </div>
           <div class="rev-streams">
@@ -940,7 +1041,7 @@
         <div class="rev-row-accent"></div>
         <div class="rev-row-body">
           <div class="rev-row-phase">
-            <div class="rev-badge rev-badge-3">Phase 3</div>
+            <div class="rev-badge rev-badge-3">Layer 3</div>
             <div class="rev-title">Talent Network</div>
           </div>
           <div class="rev-streams">
@@ -962,6 +1063,143 @@
       </div>
 
     </div><!-- /rev-stack -->
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing" id="pricing">
+  <div class="container-xl">
+    <div class="text-center mb-2">
+      <div class="section-tag">Pricing</div>
+      <h2 class="section-title">Simple, Transparent Pricing</h2>
+      <p class="section-sub mx-auto" style="max-width:440px">Start free. Upgrade when you're ready — from students finding jobs to employers hiring smarter.</p>
+      <div class="price-toggle-wrap">
+        <button class="ptab active" data-target="students">👩‍🎓 For Students</button>
+        <button class="ptab" data-target="employers">🏢 For Employers</button>
+      </div>
+    </div>
+
+    <!-- ── Students ── -->
+    <div class="price-group mt-5" id="price-students">
+      <div class="row g-4 justify-content-center">
+        <!-- Free -->
+        <div class="col-12 col-md-5 col-lg-4">
+          <div class="price-card">
+            <div class="price-plan-lbl">Free</div>
+            <div class="price-num-row">
+              <span class="price-cur">$</span><span class="price-big">0</span>
+            </div>
+            <div class="price-period">/ month — forever free</div>
+            <div class="price-tagline">Perfect to explore Kudoz and discover matching jobs right away.</div>
+            <div class="price-feats">
+              <div class="price-feat"><div class="pcheck pcheck-y">✓</div>10 job swipes per day</div>
+              <div class="price-feat"><div class="pcheck pcheck-y">✓</div>Basic job filters</div>
+              <div class="price-feat"><div class="pcheck pcheck-y">✓</div>Save up to 5 jobs</div>
+              <div class="price-feat"><div class="pcheck pcheck-y">✓</div>OPT / CPT visa filter</div>
+              <div class="price-feat"><div class="pcheck pcheck-n">—</div>AI-powered match score</div>
+              <div class="price-feat"><div class="pcheck pcheck-n">—</div>Priority employer visibility</div>
+              <div class="price-feat"><div class="pcheck pcheck-n">—</div>Application insights &amp; tips</div>
+            </div>
+            <a href="https://kudoz-swipe-dream.lovable.app" target="_blank" class="btn-price btn-price-outline">Get Started Free →</a>
+          </div>
+        </div>
+        <!-- Premium -->
+        <div class="col-12 col-md-5 col-lg-4">
+          <div class="price-card price-card-dark">
+            <div class="price-popular-badge">⭐ Most Popular</div>
+            <div class="price-plan-lbl">Premium</div>
+            <div class="price-num-row">
+              <span class="price-cur">$</span><span class="price-big">9</span><span class="price-cents">.99</span>
+            </div>
+            <div class="price-period">/ month &nbsp;·&nbsp; cancel anytime</div>
+            <div class="price-tagline">Every advantage for serious job seekers in a competitive market.</div>
+            <div class="price-feats">
+              <div class="price-feat"><div class="pcheck pcheck-y">✓</div>Unlimited job swipes</div>
+              <div class="price-feat"><div class="pcheck pcheck-y">✓</div>AI-powered match score</div>
+              <div class="price-feat"><div class="pcheck pcheck-y">✓</div>Advanced filters — visa, salary, remote</div>
+              <div class="price-feat"><div class="pcheck pcheck-y">✓</div>Unlimited saved jobs</div>
+              <div class="price-feat"><div class="pcheck pcheck-y">✓</div>Priority visibility to employers</div>
+              <div class="price-feat"><div class="pcheck pcheck-y">✓</div>Application insights &amp; tips</div>
+              <div class="price-feat"><div class="pcheck pcheck-y">✓</div>Early access to new features</div>
+            </div>
+            <a href="https://kudoz-swipe-dream.lovable.app" target="_blank" class="btn-price btn-price-gold">Subscribe Now →</a>
+          </div>
+        </div>
+      </div>
+      <p class="price-note">🔒 Secure payment &nbsp;·&nbsp; Cancel anytime &nbsp;·&nbsp; 7-day free trial included</p>
+    </div>
+
+    <!-- ── Employers ── -->
+    <div class="price-group mt-5 d-none" id="price-employers">
+      <div class="row g-4 justify-content-center">
+        <!-- Starter -->
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="price-card">
+            <div class="price-plan-lbl">Starter</div>
+            <div class="price-num-row">
+              <span class="price-cur">$</span><span class="price-big">299</span>
+            </div>
+            <div class="price-period">/ month</div>
+            <div class="price-tagline">Post sponsored listings and start reaching verified student talent today.</div>
+            <div class="price-feats">
+              <div class="price-feat"><div class="pcheck pcheck-y">✓</div>5 sponsored job listings</div>
+              <div class="price-feat"><div class="pcheck pcheck-y">✓</div>30-day listing duration</div>
+              <div class="price-feat"><div class="pcheck pcheck-y">✓</div>Verified OPT / student talent pool</div>
+              <div class="price-feat"><div class="pcheck pcheck-y">✓</div>Basic applicant dashboard</div>
+              <div class="price-feat"><div class="pcheck pcheck-n">—</div>Analytics &amp; engagement reports</div>
+              <div class="price-feat"><div class="pcheck pcheck-n">—</div>Recruiter talent search</div>
+              <div class="price-feat"><div class="pcheck pcheck-n">—</div>Pay-per-hire model</div>
+            </div>
+            <a href="#ask" class="btn-price btn-price-outline">Get Started →</a>
+          </div>
+        </div>
+        <!-- Professional -->
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="price-card price-card-dark">
+            <div class="price-popular-badge">🏆 Best Value</div>
+            <div class="price-plan-lbl">Professional</div>
+            <div class="price-num-row">
+              <span class="price-cur">$</span><span class="price-big">499</span>
+            </div>
+            <div class="price-period">/ month</div>
+            <div class="price-tagline">Full candidate access, analytics, and priority listing placement.</div>
+            <div class="price-feats">
+              <div class="price-feat"><div class="pcheck pcheck-y">✓</div>15 sponsored job listings</div>
+              <div class="price-feat"><div class="pcheck pcheck-y">✓</div>Unlimited listing duration</div>
+              <div class="price-feat"><div class="pcheck pcheck-y">✓</div>Full candidate access &amp; profiles</div>
+              <div class="price-feat"><div class="pcheck pcheck-y">✓</div>Analytics &amp; engagement reports</div>
+              <div class="price-feat"><div class="pcheck pcheck-y">✓</div>Priority listing placement</div>
+              <div class="price-feat"><div class="pcheck pcheck-y">✓</div>Dedicated account support</div>
+              <div class="price-feat"><div class="pcheck pcheck-n">—</div>Recruiter talent search</div>
+            </div>
+            <a href="#ask" class="btn-price btn-price-gold">Subscribe Now →</a>
+          </div>
+        </div>
+        <!-- Talent Network -->
+        <div class="col-12 col-md-8 col-lg-4">
+          <div class="price-card price-card-warm">
+            <div class="price-plan-lbl">Talent Network</div>
+            <div class="price-num-row">
+              <span class="price-big" style="font-size:2.4rem;color:var(--brown)">Custom</span>
+            </div>
+            <div class="price-period">tailored to your hiring volume</div>
+            <div class="price-tagline">For agencies and enterprises scaling campus recruitment at high volume.</div>
+            <div class="price-feats">
+              <div class="price-feat"><div class="pcheck pcheck-y">✓</div>Unlimited sponsored listings</div>
+              <div class="price-feat"><div class="pcheck pcheck-y">✓</div>Recruiter access &amp; talent search</div>
+              <div class="price-feat"><div class="pcheck pcheck-y">✓</div>Hiring analytics &amp; insights</div>
+              <div class="price-feat"><div class="pcheck pcheck-y">✓</div>Pay-per-hire model available</div>
+              <div class="price-feat"><div class="pcheck pcheck-y">✓</div>API integration</div>
+              <div class="price-feat"><div class="pcheck pcheck-y">✓</div>Dedicated account manager</div>
+              <div class="price-feat"><div class="pcheck pcheck-y">✓</div>Custom onboarding &amp; SLA</div>
+            </div>
+            <a href="#ask" class="btn-price btn-price-gold">Contact Sales →</a>
+          </div>
+        </div>
+      </div>
+      <p class="price-note">All plans include verified student talent pool access &nbsp;·&nbsp; No hidden fees</p>
+    </div>
+
   </div>
 </section>
 
@@ -1898,6 +2136,17 @@
     if (e.key === 'ArrowRight') goTo(cur + 1);
   });
 })();
+
+// ── Pricing tab toggle ──
+document.querySelectorAll('.ptab').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    document.querySelectorAll('.ptab').forEach(function(b) { b.classList.remove('active'); });
+    this.classList.add('active');
+    var target = this.dataset.target;
+    document.querySelectorAll('.price-group').forEach(function(g) { g.classList.add('d-none'); });
+    document.getElementById('price-' + target).classList.remove('d-none');
+  });
+});
 </script>
 </body>
 </html>
